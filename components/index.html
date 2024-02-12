@@ -1,0 +1,36 @@
+<html>  
+   <head>  
+      <title>Vue.js Component</title>  
+      <link rel="stylesheet" href="index.css">  
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+    </head>  
+    <body> 
+      
+      <!-- exaample for component-->
+      <!--   we have created two div with id component_test1 and component_test2 in the Index.html file. 
+         Once a component is created, the name of the component becomes the custom element and 
+         we can use this custom element in the Vue instance element created, 
+         i.e. inside the div with ids component_test1 and component_test2. 
+         Here, we have used a test component as the name of the component and the same name is used as the custom element inside the divs.-->
+      <div id = "component_test1">  
+         <testcomponent></testcomponent>  
+      </div>  
+      <div id = "component_test2">  
+         <testcomponent></testcomponent>  
+      </div>  
+     
+
+      <!-- Local registration for components-->
+      <div id = "component_test3">  
+         <testcomponent></testcomponent>  
+      </div>  
+
+       <!-- Componnets with more options-->
+       <div id = "component_test4">  
+         <testcomponent></testcomponent>  
+      </div> 
+
+
+      <script src="index.js"></script>  
+   </body>  
+</html> 
