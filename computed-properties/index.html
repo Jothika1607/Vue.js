@@ -1,0 +1,41 @@
+<html>  
+   <head>  
+      <title>Vue.js Computed Property</title>  
+      <link rel="stylesheet" href="index.css">  
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+    </head>  
+    <body>  
+      <!-- Using computed properties reversed the message-->
+     <div id="com_props">  
+         Original message:<h2> {{ message }}</h2>  
+         Computed reversed message: <h2> {{ reversedMessage }}</h2>  
+     </div>  
+
+     <!-- Retrieve the names  using computed properties-->
+     <div id = "com_props1">  
+      FirstName : <input type = "text" v-model = "firstname" /> <br/><br/>  
+      LastName : <input type = "text" v-model = "lastname"/> <br/><br/>  
+      <h2>My name is {{firstname}} {{lastname}}</h2>  
+      <h2>Retrieve name by using computed property : {{getfullname}}</h2>  
+     </div>  
+
+
+     <!-- Difference between a method and a computed property -->
+     <div id = "com_props2">  
+      <h2 style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h2>  
+      <h2>Random No from method: {{getrandomno1()}}</h2>  
+      <h2  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h2>  
+      <h2  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h2>  
+      <h2>Random No from method: {{getrandomno1()}}</h2>  
+    </div>  
+
+
+    <div id = "com_props3">  
+      <input type = "text" v-model = "fullname" />  
+      <h1>{{firstName}}</h1>  
+      <h1>{{lastName}}</h1>  
+   </div>  
+
+      <script src="index.js"></script>  
+   </body>  
+</html> 
