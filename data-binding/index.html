@@ -1,0 +1,79 @@
+<!-- To manipulate or assign values to HTML attributes, change the style, and 
+    assign classes with the help of binding directive called v-bind available with VueJS.-->
+    <html>  
+        <head>  
+           <title>Vue.js Data Binding</title>  
+           <link rel="stylesheet" href="index.css">  
+             <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+         </head>  
+         <body> 
+            <!--  Data Binding --> 
+           <div id = "databinding">  
+              <h3>{{title}}</h3>  
+              <a href = "hreflink" target = "_blank"> Click Here </a> <br/>  
+              <!--If you click on the first Click Here link, it shows the href as hreflink so it will not redirect to the targeted url.-->
+              <a href = "{{hreflink}}" target = "_blank">Click Here </a>  <br/>  
+              <!-- If you click on the second Click Here link, it shows the href as {{hreflink}}, so it will also not redirect to the targeted url.-->
+              <a v-bind:href = "hreflink" target = "_blank">Click Here </a>   <br/>  
+              <!-- Only the third one will redirect the correct targeted url because we have to bind it with the v-bind directive. See the following result.-->
+           </div>  
+           <br><br>
+
+           <!-- Class Binding-->
+           <style>  
+            .active {  
+               background: skyblue;  
+            }  
+            .info {  
+            color: #00529B;  
+            background-color: #BDE5F8;  
+         }  
+         div {  
+            margin: 10px 0;  
+            padding: 12px;  
+         }  
+
+         .displayError{  
+            color: #D8000C;  
+            background-color: #FFBABA;  
+         } 
+         </style>  
+        <div id = "classbinding">  
+           <div v-bind:class = "{active:isactive}"><b>{{title}}</b></div>  
+        </div>  
+        <!-- we have created a div with v-bind: class=" {active: isactive}". 
+            Here, isactive is a variable based on true or false values. This isactive variable is used to apply class active to the div. 
+            When we assign isactive variable as true, it shows the specified style in result as we have defined in the style 
+            .active with the background color as skyblue.
+            If you set the variable isactive is false, it will not apply the specified style in the result.-->
+
+
+        <!-- Assign multiple classes to HTML tags using v-bind attribute.-->
+        <div id = "classbinding1">  
+            <div class = "info"  v-bind:class = "{ active: isActive, 'displayError': hasError }">  
+               {{title}}  
+            </div>  
+         </div>  
+
+        <!-- Assign multiple classes using an array -->
+         </style>  
+            <div id = "classbinding2">  
+                <div v-bind:class = "[infoclass, errorclass]">{{title}}</div>  
+            </div>  
+        <!--  We can also pass class as an array. -->
+
+
+        <!-- Vue.js Inline Style Binding -->
+        <div id = "inlinebinding">  
+            <div v-bind:style = "{ color: activeColor, fontSize: fontSize + 'px' }">{{title}}</div>  
+        </div>  
+        <!-- The object syntax for v-bind:style -->
+
+
+        <!-- bind a style object directly to make the template cleaner. -->
+        <div id = "inlinebinding1">  
+            <div v-bind:style = "styleobj">{{title}}</div>  
+         </div>  
+           <script src="index.js"></script>  
+        </body>  
+     </html>  
