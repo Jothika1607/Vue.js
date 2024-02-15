@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+<body>
+    <!-- v-for with a Range -->
+    <h1><b>v-for with a Range</b></h1>
+    <div id="app">
+      <span v-for="num in 10">
+        {{num}}
+      </span>
+    </div>
+
+    <!-- v-for on a Template -->
+    <h1><b>v-for on a Template</b></h1>
+    <div id="app1">
+        <template v-for="num in 10">
+          <span>
+            {{num}}
+          </span>
+          <span>|</span>
+        </template>
+      </div>
+
+    <!-- v-for with v-if -->
+    <h1><b>v-for with v-if</b></h1>
+    <div id="app2">
+        <span v-for="num in numbers" v-if="num !== 3">
+          {{num}}
+        </span>
+    </div>
+
+    <!-- use a computed property -->
+    <h1><b>use a computed property</b></h1>
+    <div id="app3">
+        <span v-for="num in not3">
+          {{num}}
+        </span>
+    </div>
+    
+    <!-- v-for with a Component -->
+    <h1><b>v-for with a Component</b></h1>
+    <div id="app4">
+        <num v-for="num in numbers" :num="num" :key="num" />
+    </div>
+
+    <!-- v-for and v-if-->
+    <h1><b>v-for and v-if</b></h1>
+    <div id="app">
+        <div v-for="person in persons" v-if="show">
+          {{person}}
+        </div>
+      </div>
+      <script src="index.js"></script>
+  </body>
+</html>
