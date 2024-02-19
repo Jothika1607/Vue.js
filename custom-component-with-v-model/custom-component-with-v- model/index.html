@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Counter Component with v-model</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+<h2>Custom Components with v-model</h2>
+<div id="app">
+  <counter v-model="counterValue"></counter>
+  <p>Counter Value: {{ counterValue }}</p>
+</div>
+
+<script>
+  Vue.component('counter', {
+    template: `
+      <div>
+        <button @click="decrement">-</button>
+        <span>{{ value }}</span>
+        <button @click="increment">+</button>
+      </div>
+    `,
+    props: {
+      value: {
+        type: Number,
+        default: 0
+      }
+    },
+    methods: {
+      increment() {
+        this.$emit('input', this.value + 1);
+      },
+      decrement() {
+        this.$emit('input', this.value - 1);
+      }
+    }
+  });
+
+  new Vue({
+    el: '#app',
+    data: {
+      counterValue: 0
+    }
+  });
+</script>
+
+</body>
+</html>
