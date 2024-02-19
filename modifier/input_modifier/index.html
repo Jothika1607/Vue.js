@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Event Modifiers Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- .trim modifier -->
+  <input v-model.trim="trimmedMessage" placeholder="Type something with spaces at the beginning and end">
+ <!-- .trim modifier automatically removes whitespace from both ends of the input value before assigning it to the data property.
+     In this example, the input field with the .trim modifier ensures that any leading or trailing whitespace is removed from the entered text.-->
+
+
+  <!-- .number modifier -->
+  <input v-model.number="numericValue" type="number" placeholder="Type a number">
+  <!-- .number modifier automatically typecasts the input value to a number before assigning it to the data property. 
+    In this example, the input field with the .number modifier ensures that the entered value is converted to a number. 
+    The input field has type="number" to allow only numeric input.-->
+
+  <!-- .lazy modifier -->
+  <input v-model.lazy="lazyMessage" placeholder="Type something and press Enter">
+  <!-- .lazy modifier syncs the input data with the Vue instance's data property after the change event instead of the default behavior, 
+    which is after the input event. In this example, the input field with the .lazy modifier ensures that the data is updated only after 
+    the user finishes typing or when they move focus away from the input field.-->
+
+
+
+  <p>Trimmed Message: "{{ trimmedMessage }}"</p>
+  <p>Numeric Value: {{ numericValue }}</p>
+  <p>Lazy Message: "{{ lazyMessage }}"</p>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data() {
+    
+    return {
+      trimmedMessage: '',
+      numericValue: 0,
+      lazyMessage: ''
+    };
+  }
+});
+</script>
+
+</body>
+</html>

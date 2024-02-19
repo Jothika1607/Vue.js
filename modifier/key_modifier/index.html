@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Keyboard Event Modifiers Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <h2>Enter Modifier</h2>  
+  <input @keydown.enter="handleEnter" placeholder="Press Enter">
+  <hr>
+  <h2>Tab Modifier</h2> 
+  <input @keydown.tab="handleTab" placeholder="Press Tab">
+  <hr>
+  <h2>delete Modifier</h2> 
+  <input @keydown.delete="handleDelete" placeholder="Press Delete or Backspace">
+  <hr>
+  <h2>Esc</h2> Modifier</h2> 
+  <input @keydown.esc="handleEsc" placeholder="Press Esc">
+  <hr>
+  <h2>Spcae Modifier</h2> 
+  <input @keydown.space="handleSpace" placeholder="Press Space">
+  <hr>
+  <h2>Arrow up Modifier</h2> 
+  <input @keydown.up="handleUp" placeholder="Press Up Arrow">
+  <hr>
+  <h2>Arrow down Modifier</h2> 
+  <input @keydown.down="handleDown" placeholder="Press Down Arrow">
+  <hr>
+  <h2>Arrow Left Modifier</h2> 
+  <input @keydown.left="handleLeft" placeholder="Press Left Arrow">
+  <hr>
+  <h2>Arrow Right Modifier</h2> 
+  <input @keydown.right="handleRight" placeholder="Press Right Arrow">
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  methods: {
+    handleEnter() {
+      console.log('Enter key pressed');
+    },
+    handleTab() {
+      console.log('Tab key pressed');
+    },
+    handleDelete() {
+      console.log('Delete or Backspace key pressed');
+    },
+    handleEsc() {
+      console.log('Esc key pressed');
+    },
+    handleSpace() {
+      console.log('Space key pressed');
+    },
+    handleUp() {
+      console.log('Up arrow key pressed');
+    },
+    handleDown() {
+      console.log('Down arrow key pressed');
+    },
+    handleLeft() {
+      console.log('Left arrow key pressed');
+    },
+    handleRight() {
+      console.log('Right arrow key pressed');
+    }
+  }
+});
+</script>
+
+</body>
+</html>

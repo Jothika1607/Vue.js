@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Event Modifiers Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- .stop modifier -->
+  <h2>Stop Modifier</h2>
+  <div @click="handleClick">
+    <button @click.stop="handleInnerClick">Inner Button (Stop Propagation)</button>
+  </div>
+  <hr>
+
+  <!-- .prevent modifier -->
+  <h2>Prevent Modifier</h2>
+  <form @submit.prevent="handleSubmit">
+    <input type="text" v-model="inputText" placeholder="Enter some text">
+    <button type="submit">Submit (Prevent Default)</button>
+  </form>
+  <hr>
+
+  <!-- .capture modifier -->
+  <h2>Capture Modifier</h2>
+  <div @click.capture="handleCapture">Capture Phase (Click anywhere in the document)</div>
+  <hr>
+
+  <!-- .self modifier -->
+  <h2>Self Modifier</h2>
+  <div @click.self="handleSelfClick">Self Modifier (Click outside this box)</div>
+  <hr>
+
+  <!-- .once modifier -->
+  <h2>Once Modifier</h2>
+  <button @click.once="handleOnceClick">Once Modifier (Click once)</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      inputText: ''
+    };
+  },
+  methods: {
+    handleClick() {
+      console.log('Outer div clicked');
+    },
+    handleInnerClick() {
+      console.log('Inner button clicked');
+    },
+    handleSubmit() {
+      console.log('Form submitted (Default prevented)');
+    },
+    handleCapture() {
+      console.log('Capturing phase');
+    },
+    handleSelfClick() {
+      console.log('Clicked on the element itself');
+    },
+    handleOnceClick() {
+      console.log('Button clicked only once');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
