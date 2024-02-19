@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Props in Vue.js</title>
+  <!-- Include Vue.js from CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"></script>
+</head>
+<body>
+
+<h2>Dynamic Components in props</h2>
+<div id="app">
+  <!-- Vue component with dynamic props -->
+  <dynamic-component :message="dynamicMessage"></dynamic-component>
+</div>
+<hr>
+
+<h2>Passing Data from parent to child with props </h2>
+<div id="app1">
+    <!-- Parent component -->
+    <parent-component></parent-component>
+  </div>
+<hr>
+  
+<script>
+  // Vue component definition
+  //dynamic Component
+  Vue.component('dynamic-component', {
+    props: ['message'], // Define a dynamic prop 'message'
+    template: '<div>{{ message }}</div>' // Use the prop in the template
+  });
+
+  new Vue({
+    el: '#app',
+    data: {
+      dynamicMessage: 'Hello, Dynamic Props!' // Define data to bind to the dynamic prop
+    }
+  });
+
+  //Passing Data from parent to child with props 
+  // Child component definition
+  Vue.component('child-component', {
+    props: ['message'], // Define a prop 'message'
+    template: '<div>{{ message }}</div>' // Display the prop data
+  });
+  // Parent component definition
+  Vue.component('parent-component', {
+    data() {
+      return {
+        parentMessage: 'Hello from Parent!' // Data to be passed to the child component
+      };
+    },
+    template: `
+      <div>
+        <!-- Child component with prop binding -->
+        <child-component :message="parentMessage"></child-component>
+      </div>
+    `
+  });
+  new Vue({
+    el: '#app1'
+  });
+
+  
+</script>
+
+</body>
+</html>
