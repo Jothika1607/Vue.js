@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Custom Option Merge Strategies Example</title>
+</head>
+<body>
+
+<div id="app">
+  <child-component :options="{ items: ['A', 'B'] }"></child-component>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+  // Define a custom option merge strategy for arrays
+  Vue.config.optionMergeStrategies.mergeArrays = function (toVal, fromVal) {
+    if (!toVal) return fromVal;
+    if (!fromVal) return toVal;
+    return toVal.concat(fromVal);
+  }
+
+  // Define a child component
+  Vue.component('child-component', {
+    props: {
+      options: {
+        type: Object,
+        default: function () {
+          return {}
+        }
+      }
+    },
+    template: `
+      <div>
+        <p>Items:</p>
+        <ul>
+          <li v-for="item in options.items" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    `,
+    // Define options with custom merge strategy for arrays
+    mergeArrays: {
+      options: {
+        items: ['C', 'D']
+      }
+    }
+  });
+
+  // Create a Vue instance
+  new Vue({
+    el: '#app'
+  });
+</script>
+
+</body>
+</html>

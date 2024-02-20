@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Mixins Example</title>
+</head>
+<body>
+
+<div id="app">
+  <button @click="logMessage">Click me</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+  // Define a mixin
+  var myMixin = {
+    methods: {
+      logMessage: function() {
+        console.log("Button clicked!");
+      }
+    }
+  };
+
+  // Create a Vue instance
+  new Vue({
+    el: '#app',
+    mixins: [myMixin] // Use the mixin
+  });
+</script>
+
+</body>
+</html>

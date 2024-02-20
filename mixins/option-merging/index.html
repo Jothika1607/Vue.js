@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Mixin Example</title>
+</head>
+<body>
+<h2>Option Merging in mixins </h2>
+<br>
+<div id="app">
+  <button @click="globalClick">Global Click</button>
+  <button @click="localClick">Local Click</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+  // Define a global mixin
+  Vue.mixin({
+    methods: {
+      globalClick() {
+        alert('This is a global mixin button click');
+      }
+    }
+  });
+
+  // Define a local mixin
+  var myMixin = {
+    methods: {
+      localClick() {
+        alert('This is a local mixin button click');
+      }
+    }
+  };
+
+  // Define a component using local mixin
+  Vue.component('my-component', {
+    mixins: [myMixin],
+    template: `
+      <div>
+        <button @click="localClick">Local Click</button>
+      </div>
+    `
+  });
+
+  // Create a Vue instance
+  new Vue({
+    el: '#app',
+    mixins: [myMixin], // Apply local mixin to the root Vue instance
+    methods: {
+      globalClick() {
+        alert('This is a global mixin button click');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
