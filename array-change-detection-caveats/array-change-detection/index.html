@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <h2>Push and Modifier</h2>
+    <!--Adds one or more elements to the end of an array and returns the new length of the array.-->
+    <div id="app">
+        <ul>
+          <li v-for="(item, index) in items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <button @click="addItem">Add Item</button>
+        <button @click="modifyItem">Modify Item</button>
+      </div>
+      <hr>
+
+      <h2>Pop</h2>
+      <!--Removes the last element from an array and returns that element.-->
+      <div id="app1">
+        <ul>
+          <li v-for="(item, index) in items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <button @click="removeItem">Remove Last Item</button>
+      </div>
+      <hr>
+
+      <h2>Shift</h2>
+      <!--Removes the first element from an array and returns that removed element.-->
+      <div id="app2">
+        <ul>
+          <li v-for="(item, index) in items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <button @click="removeFirstItem">Remove First Item</button>
+      </div>
+      <hr>
+
+      <h2>Unshift</h2>
+      <div id="app3">
+        <!--Adds one or more elements to the beginning of an array and returns the new length of the array.-->
+        <ul>
+          <li v-for="(item, index) in items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <button @click="addFirstItem">Add First Item</button>
+      </div>
+      <hr>
+
+      <h2>Splice</h2>
+      <!--Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.-->
+      <div id="app4">
+        <ul>
+          <li v-for="(item, index) in items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <button @click="spliceArray">Splice Array</button>
+      </div>
+      <hr>
+
+      <h2>Filter/h2>
+        <!--Creates a new array with all elements that pass the test implemented by the provided function.-->
+      <div id="app5">
+        <input type="text" v-model="searchTerm" placeholder="Search by Name">
+        <ul>
+          <li v-for="(person, index) in filteredPeople" :key="index">
+            {{ person.name }} - {{ person.age }}
+          </li>
+        </ul>
+      </div>
+      <hr>
+
+      <script src="index.js"></script>  
+</body>
+</html>

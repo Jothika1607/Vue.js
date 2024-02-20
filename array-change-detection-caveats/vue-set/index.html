@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+</head>
+</head>
+<body>
+    <div id="app">
+        <ul>
+          <li v-for="(row, rowIndex) in nestedArray" :key="rowIndex">
+            <ul>
+              <li v-for="(item, colIndex) in row" :key="colIndex">
+                {{ item }}
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <button @click="manipulateArray">Manipulate Array</button>
+      </div>
+      <script src="index.js"></script>  
+</body>
+</html>
