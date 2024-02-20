@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Closure Example</title>
+  <!-- Load Vue.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <button @click="updateMessage">Update Message</button>
+  <p>{{ message }}</p>
+</div>
+
+<script>
+  // Initialize Vue app
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        message: 'Initial message'
+      };
+    },
+    methods: {
+      updateMessage() {
+        // Using a closure to capture 'this'
+        const self = this;
+        setTimeout(function() {
+          // Inside this function, 'this' will refer to the window object
+          // But we can still access the Vue instance through the 'self' variable
+          self.message = 'Message updated after timeout';
+        }, 1000);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

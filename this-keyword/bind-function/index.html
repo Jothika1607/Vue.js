@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Closure Example</title>
+  <!-- Load Vue.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <button @click="displayMessage">Display Message</button>
+</div>
+
+<script>
+  // Initialize Vue app
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        message: 'Use bind. with this keyword in vuejs'
+      };
+    },
+    methods: {
+      displayMessage() {
+        // Using bind to explicitly bind 'this' to the function
+        setTimeout(function() {
+          // Inside this function, 'this' would refer to the window object, but using bind, we set it to the Vue instance
+          alert(this.message);
+        }.bind(this), 1000);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
