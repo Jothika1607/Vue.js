@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Event Bus</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <parent-component></parent-component>
+        <child-component></child-component>
+    </div>
+
+    <script>
+        const EventBus = new Vue();
+
+        Vue.component('parent-component', {
+            template: `
+                <div>
+                    <h2>Parent Component</h2>
+                    <button @click="sendMessage">Send Message to Child</button>
+                </div>
+            `,
+            methods: {
+                sendMessage() {
+                    EventBus.$emit('message-to-child', 'Hello from parent!');
+                }
+            }
+        });
+
+        Vue.component('child-component', {
+            data() {
+                return {
+                    receivedMessage: ''
+                };
+            },
+            template: `
+                <div>
+                    <h2>Child Component</h2>
+                    <p>Received Message: {{ receivedMessage }}</p>
+                </div>
+            `,
+            mounted() {
+                EventBus.$on('message-to-child', message => {
+                    this.receivedMessage = message;
+                });
+            }
+        });
+
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>
