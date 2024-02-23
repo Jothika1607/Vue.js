@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <ul>
+          <li v-for="post in posts" :key="post.id">{{ post.title }}</li>
+        </ul>
+      </div>
+      
+      <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            posts: []
+          };
+        },
+        mounted() {
+          // Make a GET request to fetch posts from an API
+          axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+              // Set the fetched posts to the data property
+              this.posts = response.data;
+            })
+            .catch(error => {
+              console.error('Error fetching posts:', error);
+            });
+        }
+      });
+      </script>
+      
+</body>
+</html>

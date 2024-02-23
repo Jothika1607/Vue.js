@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js with Vuetify and Vuex</title>
+  <!-- Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- Vuetify CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.8/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.8"></script>
+  <!-- Vuex CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-container>
+        <h1>{{ message }}</h1>
+        <v-btn color="primary" @click="incrementCounter">Increment Counter</v-btn>
+        <p>Counter: {{ counter }}</p>
+      </v-container>
+    </v-app>
+  </div>
+
+  <script>
+    // Initialize Vuetify
+    Vue.use(Vuetify);
+
+    // Initialize Vuex store
+    const store = new Vuex.Store({
+      state: {
+        counter: 0
+      },
+      mutations: {
+        increment(state) {
+          state.counter++;
+        }
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      store,
+      data() {
+        return {
+          message: 'Vue.js with Vuetify and Vuex'
+        };
+      },
+      computed: {
+        counter() {
+          return this.$store.state.counter;
+        }
+      },
+      methods: {
+        incrementCounter() {
+          this.$store.commit('increment');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

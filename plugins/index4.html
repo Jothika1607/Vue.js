@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js with vue-moment and vue-chartjs</title>
+  <!-- Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- vue-moment CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-moment@4"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2"></script>
+  <!-- Vue Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-chartjs@3"></script>
+</head>
+<body>
+  <div id="app">
+    <line-chart :chart-data="chartData"></line-chart>
+  </div>
+
+  <script>
+    // Define chart data
+    const chartData = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [{
+        label: 'Sales Data',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: [65, 59, 80, 81, 56, 55, 40]
+      }]
+    };
+
+    // Define Vue component for chart
+    Vue.component('line-chart', {
+      extends: VueChartJs.Line,
+      props: ['chartData', 'options'],
+      mounted() {
+        this.renderChart(this.chartData, this.options);
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          chartData: chartData
+        };
+      }
+    });
+  </script>
+</body>
+</html>
