@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Router Example</title>
+  <!-- Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- Vue Router CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+</head>
+<body>
+
+<div id="app">
+  <router-link to="/">Home</router-link>
+  <router-link to="/about">About</router-link>
+  
+  <router-view></router-view>
+</div>
+
+<script>
+  // Home component
+  const Home = {
+    template: `
+      <div>
+        <h1>Home Page</h1>
+        <p>Welcome to the Home Page!</p>
+      </div>
+    `
+  };
+
+  // About component
+  const About = {
+    template: `
+      <div>
+        <h1>About Page</h1>
+        <p>Learn more about us!</p>
+      </div>
+    `
+  };
+
+  // Define routes
+  const routes = [
+    { path: '/', component: Home },
+    { path: '/about', component: About }
+  ];
+
+  // Create router instance
+  const router = new VueRouter({
+    routes
+  });
+
+  // Create Vue app instance
+  const app = new Vue({
+    router
+  }).$mount('#app');
+</script>
+
+</body>
+</html>
