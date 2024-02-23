@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js State Management with Vuex</title>
+  <!-- Include Vue.js and Vuex from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Counter: {{ $store.state.counter }}</h1>
+    <button @click="incrementCounter">Increment Counter</button>
+    <button @click="decrementCounter">Decrement Counter</button>
+    <div>
+      <h2>History:</h2>
+      <ul>
+        <li v-for="(entry, index) in $store.state.history" :key="index">
+          {{ entry.action }} ({{ entry.count }})
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Vuex store
+    const store = new Vuex.Store({
+      state: {
+        counter: 0,
+        history: []
+      },
+      mutations: {
+        increment(state) {
+          state.counter++;
+          state.history.push({ action: 'Incremented counter', count: state.counter });
+        },
+        decrement(state) {
+          state.counter--;
+          state.history.push({ action: 'Decremented counter', count: state.counter });
+        }
+      }
+    });
+
+    // Initialize Vue app with Vuex store
+    const app = new Vue({
+      el: '#app',
+      store, // Inject Vuex store into Vue app
+      methods: {
+        incrementCounter() {
+          this.$store.commit('increment'); // Call mutation to increment counter
+        },
+        decrementCounter() {
+          this.$store.commit('decrement'); // Call mutation to decrement counter
+        }
+      }
+    });
+  </script>
+</body>
+</html>

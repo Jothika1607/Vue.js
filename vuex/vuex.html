@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List App with Vuex</title>
+  <!-- Include Vue.js and Vuex from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Todo List</h1>
+    <input type="text" v-model="newTask" @keyup.enter="addTask" placeholder="Add a new task">
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        <input type="checkbox" v-model="task.completed">
+        <span :class="{ completed: task.completed }">{{ task.description }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    // Initialize Vuex store
+    const store = new Vuex.Store({
+      state: {
+        tasks: [
+          { id: 1, description: 'Learn Vue.js', completed: false },
+          { id: 2, description: 'Build a project', completed: false },
+          { id: 3, description: 'Have fun coding', completed: false }
+        ],
+        newTask: ''
+      },
+      mutations: {
+        addTask(state) {
+          if (state.newTask.trim() !== '') {
+            state.tasks.push({
+              id: state.tasks.length + 1,
+              description: state.newTask.trim(),
+              completed: false
+            });
+            state.newTask = '';
+          }
+        }
+      },
+      getters: {
+        tasks(state) {
+          return state.tasks;
+        }
+      }
+    });
+
+    // Initialize Vue app with Vuex store
+    const app = new Vue({
+      el: '#app',
+      store, // Inject Vuex store into Vue app
+      data: {
+        newTask: ''
+      },
+      computed: {
+        tasks() {
+          return this.$store.getters.tasks;
+        }
+      },
+      methods: {
+        addTask() {
+          this.$store.commit('addTask');
+        }
+      }
+    });
+  </script>
+  
+  <style>
+    .completed {
+      text-decoration: line-through;
+    }
+  </style>
+</body>
+</html>
