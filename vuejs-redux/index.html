@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redux Example</title>
+</head>
+<body>
+  <div id="counter"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.2/redux.min.js"></script>
+
+  <script>
+    // Define the initial state
+    const initialState = {
+      count: 0
+    };
+
+    // Define a reducer function
+    function counterReducer(state = initialState, action) {
+      switch(action.type) {
+        case 'INCREMENT':
+          return {
+            ...state,
+            count: state.count + 1
+          };
+        case 'DECREMENT':
+          return {
+            ...state,
+            count: state.count - 1
+          };
+        default:
+          return state;
+      }
+    }
+
+    // Create a Redux store
+    const store = Redux.createStore(counterReducer);
+
+    // Function to render the counter
+    function render() {
+      const counterElement = document.getElementById('counter');
+      counterElement.innerHTML = `
+        <h1>Counter: ${store.getState().count}</h1>
+        <button onclick="increment()">Increment</button>
+        <button onclick="decrement()">Decrement</button>
+      `;
+    }
+
+    // Subscribe to updates
+    store.subscribe(render);
+
+    // Dispatch actions
+    function increment() {
+      store.dispatch({ type: 'INCREMENT' });
+    }
+
+    function decrement() {
+      store.dispatch({ type: 'DECREMENT' });
+    }
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
