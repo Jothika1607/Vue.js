@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Single Slot Example</title>
+    <!-- Include Vue.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <blog-post>
+            <!-- Content for the default slot -->
+            <h1>Vue.js Single Slot Example</h1>
+            <p>This is a simple Vue.js application demonstrating the usage of a single/default slot.</p>
+        </blog-post>
+    </div>
+
+    <script>
+        // Define a BlogPost component with a single/default slot
+        Vue.component('blog-post', {
+            template: `
+                <div class="blog-post">
+                    <header>
+                        <h2>Blog Post</h2>
+                    </header>
+                    <main>
+                        <!-- Define the default slot -->
+                        <slot></slot>
+                    </main>
+                    <footer>
+                        <p>Posted by Admin</p>
+                    </footer>
+                </div>
+            `
+        });
+
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>

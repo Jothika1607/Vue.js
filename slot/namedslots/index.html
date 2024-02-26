@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Named Slots Example</title>
+    <!-- Include Vue.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <parent-component>
+            <!-- Named slots content -->
+            <template v-slot:header>
+                <h2>This is a custom header</h2>
+            </template>
+            <template v-slot:footer>
+                <p>This is a custom footer</p>
+            </template>
+        </parent-component>
+    </div>
+
+    <script>
+        // Child component with named slots
+        Vue.component('child-component', {
+            template: `
+                <div>
+                    <!-- Define named slots -->
+                    <slot name="header"></slot>
+                    <div>
+                        <p>Main content goes here</p>
+                    </div>
+                    <slot name="footer"></slot>
+                </div>
+            `
+        });
+
+        // Parent component containing child components with named slots
+        Vue.component('parent-component', {
+            template: `
+                <div>
+                    <h1>Parent Component</h1>
+                    <child-component>
+                        <!-- Named slots content -->
+                        <template v-slot:header>
+                            <h2>This is a default header</h2>
+                        </template>
+                        <template v-slot:footer>
+                            <p>This is a default footer</p>
+                        </template>
+                    </child-component>
+                </div>
+            `
+        });
+
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>
